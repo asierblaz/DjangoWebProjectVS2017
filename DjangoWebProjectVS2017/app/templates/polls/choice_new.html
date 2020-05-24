@@ -1,0 +1,18 @@
+﻿{% extends "app/layout.html" %}
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ mensaje }}</h3>
+
+<h1>Insertar una opción</h1>
+{% if question.choice_set.count >= 4 %}
+        <h3 style="color: red">No se pueden añadir más respuestas.</h3>
+        <a href="{% url 'index' %}">Ver preguntas</a>
+{% else %}
+        <form method="POST" class="post-form">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+<a href="{% url 'index' %}">Ver preguntas</a> 
+{% endif %}
+{% endblock %}
